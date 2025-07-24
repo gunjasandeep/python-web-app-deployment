@@ -9,7 +9,8 @@ tokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-medium")
 model = AutoModelForCausalLM.from_pretrained("microsoft/DialoGPT-medium")
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('DB_URL')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
+# app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('DB_URL')
 metrics = PrometheusMetrics(app)
 db = SQLAlchemy(app)
 
